@@ -16,3 +16,11 @@ $$
 
 ![80d3e0cf9ee2eea17c3100a2c96f65a](C:\Users\24468\Documents\WeChat Files\wxid_s6oj0hbiof9412\FileStorage\Temp\80d3e0cf9ee2eea17c3100a2c96f65a.jpg)
 
+#### 隐藏层
+
+将隐藏层视为对数据的升维操作，在高维空间内，即便是再复杂的数据，都可能找到简单的模型来将其分开
+
+![](https://cdn.jsdelivr.net/gh/Mark-Zhangbinghan/QG_Summer_Camp@main/picture/202407131450204.png)
+
+![](https://cdn.jsdelivr.net/gh/Mark-Zhangbinghan/QG_Summer_Camp@main/picture/202407131451850.png)
+
