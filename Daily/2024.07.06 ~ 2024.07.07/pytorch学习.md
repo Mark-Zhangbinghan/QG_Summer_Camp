@@ -38,23 +38,29 @@ import cv2
 from PIL import Image
 import os
 
+img_dir  = r'C:\Users\24468\Desktop\python练习\cassava-leaf-disease-classification\train_images'
+annotations_path = r'C:\Users\24468\Desktop\python练习\cassava-leaf-disease-classification\train.csv'
+
 class MyDataset(Dataset): # 定义类
     
-    def __init__(self, root_dir, label_dir):
-        self.root_dir = root_dir
-        self.label_dir = label_dir
-        self.path = os.path.join(self.root_dir, self.label_dir)
-        self.img_path = os.listdir(self.path)
-        
-    def __getitem__(self, idx):
-        img_name = self.img_path[idx]
-        img_item_path = os.path.join(self.root_dir, self.label_dir, img_name)
-        img = Image.open(img_item_path)
-        label = self.label_dir
-        return img, label
-    
+    def __init__(self, annotations_file, img_dir, img_transform=None, 								target_transform=None):
+        self.img_labels = pd.read_csv(annotations_file)
+        self.img_dir = img_dir
+        self.img_transform = img_transform
+        self.target_transform = target_transform
+
     def __len__(self):
-        return len(self.img_path)
+        return len(self.img_labels)
+
+    def __getitem__(self, idx):
+        img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 0])
+        image = Image.open(img_path)
+        image = self.img_transform(image)
+        label = self.img_labels.iloc[idx, 1]
+        return image, label
+    
+dataset = MyDataset(annotations_path, img_dir, img_transform=transform, 								target_transform=None)
+train_loader = torch.utils.data.DataLoader(dataset, batch_size=64)
 ```
 
 ##### 2）TensorBoard的使用（数据可视化）
